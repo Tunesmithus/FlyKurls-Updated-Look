@@ -1,0 +1,31 @@
+﻿@model FlyKurls.Models.HatType
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<form method="post"> 
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary"> Update Hat Type</h2>
+        </div>
+        <div asp-validation-summary = "All"></div>
+        <div class="mb-3">   
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" /> 
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-success" style="width:150px">Update</button>
+        <a asp-controller="HatType" asp-action="Index" class="btn btn-primary"><i class="bi bi-arrow-left-circle"></i>
+            Back To List
+        </a>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        <partial name ="_ValidationScriptsPartial"/> 
+    }
+
+}
+
