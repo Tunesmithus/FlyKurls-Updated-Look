@@ -22,6 +22,8 @@ namespace FlyKurls.DataAccess.Repository
             Company = new CompanyRepository(context);
             ShoppingCart = new ShoppingCartRepository(context);
             ApplicationUser = new ApplicationUserRepository(context);
+            OrderDetail = new OrderDetailRepository(context);
+            OrderHeader = new OrderHeaderRepository(context);
             
         }
         public ICategoryRepository Category { get; private set; }
@@ -34,6 +36,10 @@ namespace FlyKurls.DataAccess.Repository
         public IShoppingCartRepository ShoppingCart { get; set; }
 
         public IApplicationUserRepository ApplicationUser { get; private set; }
+        public IOrderDetailRepository OrderDetail { get; private set; }
+        public IOrderHeaderRepository OrderHeader { get; private set; }
+
+       
 
         public void Save()
         {

@@ -18,7 +18,7 @@ namespace FlyKurls.DataAccess.Repository
         }
         public void Update(Company company)
         {
-            context.Update(company);
+            context.Companies.Update(company);
         }
     }
 }

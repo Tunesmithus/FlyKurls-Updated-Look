@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@using FlyKurls.Utility
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -28,13 +31,13 @@
          <li class="nav-item">
                <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
          </li>
-         <li class="nav-item">
-            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </li>
+         
         
         <li class="nav-item">
           <a class="nav-link" href="#">About</a>
         </li>
+        @if(User.IsInRole(StaticDetail.Role_Administrator))
+        {
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content Management</a>
           <div class="dropdown-menu">
@@ -42,12 +45,23 @@
             <a class="dropdown-item" asp-area="Admin" asp-controller="HatType" asp-action="Index">Hat Type</a>
             <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
+            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Create User</a>
           </div>
         </li>
+        }
         <li class="nav-item" >
-            <a class="nav-link" asp-controller="Cart" asp-action="Index"><i class="bi bi-cart"></i></a>
+            <a class="nav-link"  asp-area="Admin" asp-controller="Order" asp-action="Index">
+                Manage Order
+            </a>
         </li>
+        
+          <li class="nav-item" >
+            <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                @await Component.InvokeAsync("ShoppingCart")
+            </a>
+            </li>            
+        
+
       </ul>
       <partial name ="_LoginPartial"/>
       <form class="d-flex">

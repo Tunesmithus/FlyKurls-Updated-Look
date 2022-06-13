@@ -20,7 +20,7 @@ namespace FlyKurls.DataAccess.Repository
 
         public void Update(Category category)
         {
-            context.Update(category);
+            context.Categories.Update(category);
         }
     }
 }

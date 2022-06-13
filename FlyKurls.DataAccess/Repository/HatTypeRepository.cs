@@ -19,7 +19,7 @@ namespace FlyKurls.DataAccess.Repository
 
         public void Update(HatType hatType)
         {
-            context.Update(hatType);
+            context.HatTypes.Update(hatType);
         }
     }
 }

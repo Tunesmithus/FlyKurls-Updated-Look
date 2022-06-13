@@ -2,6 +2,8 @@
 using FlyKurls.DataAccess.Repository.IRepository;
 using FlyKurls.Models;
 using FlyKurls.Models.ViewModels;
+using FlyKurls.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace FlyKurls.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = StaticDetail.Role_Administrator)]
     public class ProductController : Controller
     {
 
@@ -142,8 +145,7 @@ namespace FlyKurls.Web.Areas.Admin.Controllers
            
         }
 
-        
-
+ 
 
         #region API Calls
         [HttpGet]

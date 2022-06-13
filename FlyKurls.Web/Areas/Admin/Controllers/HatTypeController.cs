@@ -1,11 +1,14 @@
 ﻿using FlyKurls.DataAccess.Repository.IRepository;
 using FlyKurls.Models;
+using FlyKurls.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlyKurls.Web.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = StaticDetail.Role_Administrator)]
     public class HatTypeController : Controller
     {
         private readonly IUnitOfWork unitOfWork;

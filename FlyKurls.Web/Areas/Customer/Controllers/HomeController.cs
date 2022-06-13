@@ -1,7 +1,9 @@
 ﻿using FlyKurls.DataAccess.Repository.IRepository;
 using FlyKurls.Models;
 using FlyKurls.Models.ViewModels;
+using FlyKurls.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -56,13 +58,17 @@ namespace FlyKurls.Web.Controllers
             if (cartFromDb == null)
             {
                 unitOfWork.ShoppingCart.Add(shoppingCart);
+                unitOfWork.Save();
+                HttpContext.Session.SetInt32(StaticDetail.SessionCart, 
+                    unitOfWork.ShoppingCart.GetAll(x => x.ApplicationUserId == claim.Value).ToList().Count);
             }
             else
             {
                 unitOfWork.ShoppingCart.IncrementCount(cartFromDb, shoppingCart.Count);
+                unitOfWork.Save();
             }
                 
-            unitOfWork.Save();
+           
 
             return RedirectToAction(nameof(Index));
 
